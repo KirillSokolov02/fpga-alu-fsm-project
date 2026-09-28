@@ -1,0 +1,107 @@
+# Quartus build/intermediate files
+db/
+incremental_db/
+output_files/
+simulation/
+*.qws
+*.qpf.bak
+*.qsf.bak
+
+# Compilation databases and partition info
+*.cmp.*
+*.map.*
+*.fit.*
+*.asm.*
+*.sta.*
+*.pow.*
+*.pin
+*.pof
+*.sof
+*.jdi
+*.done
+*.rpx
+
+# Simulation artifacts
+*.vo
+*.vho
+*.sft
+*.xrf
+*.msim_transcript
+*.vwf.vt
+*.sim.vwf
+*.qdb
+*.qpg
+*.qtl
+*.qmsg
+*.qar
+*.qarlog
+
+# Greybox and temp
+greybox_tmp/
+*.db
+*.ddb
+*.tdb
+*.hmdb
+*.kmdb
+*.rsb_project
+*.tt_db
+
+# Intel/Altera temp
+*.rpd
+*.rpj
+*.cmp.rdb
+*.map.rdb
+*.fit.rdb
+*.sta.rdb
+*.asm.rdb
+*.pow.rdb
+*.lpc.*
+*.hif
+*.hdb
+*.cnf.*
+*.kpt
+*.logdb
+*.reg_db
+*.cdb
+*.dpi
+*.hbdb
+*.sig
+*.bmp
+*.rrp.*
+*.pre_map.*
+*.rtlv.*
+*.routing.*
+*.vpr.*
+*.zippleback*
+*.tis_db_list.*
+*.tmw_info
+*.smart_action.*
+*.cbx.*
+*.sld*
+*.nf
+*.altdb
+
+# IDE/editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Archives
+*.zip
+*.tar
+*.tar.gz
+*.7z
+
+# ModelSim
+modelsim_proj/
+vsim.wf
+*.wlf
+*.shm
+*.dat
+*.fst

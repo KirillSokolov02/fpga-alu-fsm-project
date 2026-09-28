@@ -1,0 +1,123 @@
+/*
+`timescale 1ns/1ps
+module fsm_test;
+	
+  reg fac, clk, reset;
+  reg [3:0] in1;
+  wire [7:0] result;
+  wire Overflow;
+  
+  fsm UUT (.fac(fac), .clk(clk), .reset (reset), .in1(in1), .result(result), .Overflow(Overflow));
+  
+  initial
+  begin
+    clk = 0;
+    reset = 0;
+    fac = 1;
+    in1 = 4'b0011;
+    toggle_clk;
+    toggle_clk;
+    toggle_clk;
+    toggle_clk;
+    toggle_clk;
+    toggle_clk;
+    toggle_clk;
+    toggle_clk;
+    toggle_clk;
+    toggle_clk;
+    toggle_clk;
+    toggle_clk;
+    toggle_clk;
+    toggle_clk;
+    toggle_clk;
+    toggle_clk;
+    toggle_clk;
+    toggle_clk;
+    toggle_clk;
+    toggle_clk;
+    toggle_clk;
+    toggle_clk;
+    toggle_clk;
+    toggle_clk;
+  end
+  initial 
+    begin
+      $display("result = %b", result);
+    end  
+  initial
+    begin
+      $dumpfile("dump.vcd"); 
+      $dumpvars; 
+    end
+  
+    task toggle_clk;
+    begin
+      #4 clk = ~clk;
+      #4 clk = ~clk;
+    end
+  endtask
+  
+endmodule
+*/
+
+`timescale 1ns/1ps
+module ALU_test;
+	
+  reg [1:0]OpCode;
+  reg [3:0] in1, in2;
+  wire [7:0] result;
+  wire Overflow;
+  
+  ALU UUT (.in1(in1), .in2(in2), .OpCode(OpCode), .result(result), .Overflow(Overflow));
+  
+  initial
+  begin
+    OpCode = 2'b00;
+    #1;
+   for(in1 = 4'b0000; in1 <= 4'b1111; in1 = in1 + 4'b0001) begin
+    for(in1 = 0; in1 <= 15; in1 = in1 + 1)begin
+      #1;
+      $display("------ %b", in1);
+      for(in2 = 0; in2 <= 15; in2 = in2 + 1) begin
+        #1;
+        if(result != in1 + in2)begin
+          #1;
+          $display("Error! result = %b, in1 = %b, in2 = %b", result, in1, in2);
+          #1;
+        end
+        else
+          $display("success! result = %b, in1 = %b, in2 = %b", result, in1, in2);
+      end
+    end  
+    #1;
+    OpCode = 2'b01;
+    for(in1 = 4'b0000; in1 <= 4'b1111; in1 = in1 + 4'b0001) begin
+      for(in2 = 4'b0000; in2 <= 4'b1111; in2 = in2 + 4'b0001) begin
+        if(result != in1 - in2 )begin
+          #1;
+          $display("Error! result = %b, in1 = %b, in2 = %b", result, in1, in2);
+        end
+      end  
+    end 
+    #1;
+    OpCode = 2'b10;
+    for(in1 = 4'b0000; in1 <= 4'b1111; in1 = in1 + 4'b0001) begin
+      for(in2 = 4'b0000; in2 <= 4'b1111; in2 = in2 + 4'b0001) begin
+        if(result != in1 * in2)begin
+          #1;
+          $display("Error! result = %b, in1 = %b, in2 = %b", result, in1, in2);
+        end
+      end  
+    end 
+    #1;
+    OpCode = 2'b00;
+    in1 = (4'b0101);
+    in2 = (4'b0001);
+    #1;
+  end
+  initial
+    begin
+      $dumpfile("dump.vcd"); 
+      $dumpvars; 
+    end
+endmodule
